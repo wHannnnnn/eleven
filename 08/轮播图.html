@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 400px;
+            height: 300px;
+            margin: 100px auto;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        img {
+            display: none;
+            width: 400px;
+            height: 300px;
+            cursor: move;
+            text-align: center;
+            font: 700 80px/300px "simsun";
+        }
+
+        .show {
+            display: block;
+        }
+
+        ul {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -66px;
+        }
+
+        li {
+            float: left;
+            width: 18px;
+            height: 18px;
+            text-align: center;
+            color: #fff;
+            line-height: 18px;
+            cursor: pointer;
+            margin: 2px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        li:hover {
+            background-color: red;
+        }
+
+        .current {
+            background-color: red;
+        }
+
+        span {
+            position: absolute;
+            top: 50%;
+            text-align: center;
+            font: 700 30px/60px "simsun";
+            color: #fff;
+            margin-top: -30px;
+            width: 30px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        span:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .right {
+            right: 0;
+        }
+    </style>
+
+</head>
+<body>
+<div class="box">
+    <a href="#"><img src="images/1.jpg" alt="" class="show"/></a>
+    <a href="#"><img src="images/2.jpg" alt=""/></a>
+    <a href="#"><img src="images/3.jpg" alt=""/></a>
+    <a href="#"><img src="images/4.jpg" alt=""/></a>
+    <a href="#"><img src="images/2.jpg" alt=""/></a>
+    <a href="#"><img src="images/3.jpg" alt=""/></a>
+
+    <ul>
+        <li class="current">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <span class="left">&lt;</span>
+    <span class="right">&gt;</span>
+</div>
+</body>
+<script src="../myTools.js"></script>
+<script>
+    var aImg = $("img")
+    var aLi = $("li")
+    var aSp = $("span")
+    var len = aImg.length
+    var timer = null
+    var num = 0
+    var num1 = 0;
+    var aDiv = $("div")[0]
+    for (var i = 0; i < aLi.length; i++) {
+        aLi[i].zz = i
+        aLi[i].onmouseover = function () {
+            for (var i = 0; i < aLi.length; i++) {
+                aImg[i].style.display = "none";
+                aLi[i].className = "none"
+            }
+            aImg[this.zz].style.display = "block";
+            aLi[this.zz].className = "current"
+        }
+    }
+    aSp[0].onclick = function () {
+        num--
+        if (num < 0) {
+            num = 5
+        }
+        for (var i = 0; i < aLi.length; i++) {
+            aImg[i].style.display = "none";
+            aLi[i].className = "none"
+        }
+        aImg[num].style.display = "block";
+        aLi[num].className = "current"
+    }
+    aSp[1].onclick = function () {
+        num++
+        if (num > 5) {
+            num = 0
+        }
+        for (var i = 0; i < aLi.length; i++) {
+            aImg[i].style.display = "none";
+            aLi[i].className = "none"
+        }
+        aImg[num].style.display = "block";
+        aLi[num].className = "current"
+    }
+
+    timer = setInterval(function () {
+        for (var i = 0; i < aLi.length; i++) {
+            aImg[i].style.display = "none";
+            aLi[i].className = "none"
+        }
+        num1++
+        if (num1 >= len) {
+            num1 = 0
+        }
+        aImg[num1].style.display = "block";
+        aLi[num1].className = "current"
+
+    }, 1000)
+
+
+    for (var i = 0; i < aLi.length; i++) {
+        aDiv.onmouseover = function () {
+            clearInterval(timer)
+            timer = null
+
+        }
+
+    }
+
+    aDiv.onmouseout = function () {
+
+
+        timer = setInterval(function () {
+            for (var i = 0; i < aLi.length; i++) {
+                aImg[i].style.display = "none";
+                aLi[i].className = "none"
+            }
+            num1++
+            if (num1 >= len) {
+                num1 = 0
+            }
+            aImg[num1].style.display = "block";
+            aLi[num1].className = "current"
+
+        }, 1000)
+    }
+
+
+</script>
+</html>

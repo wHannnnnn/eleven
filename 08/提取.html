@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+
+    function ti (str){
+      var obj={}
+        var ain=str.indexOf("?");
+        var newstr=str.substring(ain+1)
+        var arr=newstr.split("&")
+        for(var i=0;i<arr.length;i++){
+            var arr1=arr[i].split("=")
+            obj[arr1[0]]=arr1[1]
+        }
+
+//        return arr1
+//        return arr
+        return obj
+    }
+    console.log(ti("http:// www.baidu.com:80/login/login.php?username=zhangsan&age=26&password=1234"))
+
+</script>
+
+</html>

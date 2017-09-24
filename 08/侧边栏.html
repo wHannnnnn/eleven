@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+        }
+
+        img {
+            position: fixed;
+            top: 100px;
+
+        }
+
+        img:nth-child(2) {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<img src="1.gif" alt=""/>
+<img src="2.gif" alt=""/>
+</body>
+<script src="../myTools.js"></script>
+<script>
+    var aImg = $("img")
+    timer=setTimeout(function(){
+        for(var i=0;i<aImg.length;i++){
+            aImg[i].style.display="none"
+        }
+    },2000)
+</script>
+</html>

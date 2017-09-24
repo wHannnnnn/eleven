@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box {
+            width: 400px;
+            height: 300px;
+            background: red;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        input {
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background: green;
+            color: white;
+            margin: 30px auto;
+            display: block;
+        }
+
+        p {
+            text-align: center;
+            font-size: 30px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <p>倒计时5秒</p>
+    <input type="button" value="单击开始"/>
+
+    <p>共点击了0次</p>
+</div>
+</body>
+<script src="../myTools.js"></script>
+<script>
+    var aIn = $("input")[0]
+    var aP = $("p")
+    var timer = null
+    var num = 5
+    var num1 = 0
+
+    timer = setInterval(function () {
+        num--;
+        aP[0].innerHTML = "倒计时" + num + "秒"
+        if (num == 0) {
+            clearInterval(timer)
+            timer = null
+            aIn.disabled = true;
+            aIn.style.background = "gray";
+        }
+    }, 1000)
+    aIn.onclick = function () {
+        num1++;
+        aP[1].innerHTML = "共点击了" + num1 + "次"
+    }
+</script>
+</html>
